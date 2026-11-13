@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Third Space is a University of Toronto research group working in Human-Computer Interaction and Information and Communication Technologies for Development.">
+  <meta name="theme-color" content="#102b35">
+  <title>Third Space | University of Toronto</title>
+  <style>
+    :root {
+      --ink: #142d35;
+      --muted: #61747a;
+      --teal: #176b68;
+      --mint: #dceee8;
+      --cream: #f6f5ef;
+      --white: #fff;
+      --line: #e2e8e4;
+      --accent: #e5a34b;
+      --shadow: 0 18px 50px rgba(20,45,53,.10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--ink); background: var(--white);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1160px, calc(100% - 44px)); margin: auto; }
+    .topbar { background: var(--ink); color: #dce8e5; font-size: .83rem; }
+    .topbar .wrap { display:flex; justify-content:space-between; gap:16px; padding:9px 0; }
+    header { position: sticky; top:0; z-index:20; background:rgba(255,255,255,.94); backdrop-filter: blur(14px); border-bottom:1px solid rgba(226,232,228,.8); }
+    nav { min-height:76px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:-.04em; font-size:1.45rem; }
+    .brand-mark { width:39px; height:39px; border-radius:13px 13px 13px 4px; background:var(--teal); display:grid; place-items:center; color:white; font-size:1.1rem; }
+    .brand small { display:block; font-size:.62rem; letter-spacing:.12em; color:var(--muted); font-weight:700; text-transform:uppercase; margin-top:-5px; }
+    .navlinks { display:flex; align-items:center; gap:27px; font-size:.91rem; font-weight:650; color:#425a60; }
+    .navlinks a:hover { color:var(--teal); }
+    .nav-cta { padding:11px 17px; border-radius:999px; background:var(--teal); color:white!important; }
+    .menu-btn { display:none; border:0; background:transparent; font-size:1.5rem; color:var(--ink); }
+    .hero { background:var(--cream); overflow:hidden; position:relative; }
+    .hero:after { content:""; position:absolute; width:470px; height:470px; border-radius:50%; background:var(--mint); right:-110px; top:-170px; opacity:.8; }
+    .hero-grid { min-height:570px; display:grid; grid-template-columns:1.08fr .92fr; align-items:center; gap:55px; padding:78px 0; position:relative; z-index:1; }
+    .eyebrow { display:inline-flex; align-items:center; gap:9px; color:var(--teal); text-transform:uppercase; letter-spacing:.13em; font-size:.75rem; font-weight:800; }
+    .eyebrow:before { content:""; width:25px; height:2px; background:var(--accent); }
+    h1 { font-size:clamp(3rem,6vw,5.3rem); line-height:1.02; letter-spacing:-.065em; margin:20px 0; max-width:680px; }
+    h1 span { color:var(--teal); }
+    .hero p { color:#52686d; font-size:1.12rem; max-width:570px; margin:0 0 30px; }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; padding:13px 21px; border-radius:999px; font-weight:750; font-size:.92rem; transition:.2s; }
+    .btn.primary { background:var(--teal); color:white; box-shadow:0 9px 22px rgba(23,107,104,.18); }
+    .btn.secondary { border:1px solid #cbd8d2; background:white; }
+    .btn:hover { transform:translateY(-2px); }
+    .visual { min-height:390px; position:relative; display:grid; place-items:center; }
+    .visual-card { width:min(100%,430px); min-height:350px; background:var(--teal); border-radius:34px 34px 34px 8px; padding:34px; color:white; box-shadow:var(--shadow); position:relative; overflow:hidden; }
+    .visual-card:before,.visual-card:after { content:""; position:absolute; border:1px solid rgba(255,255,255,.22); border-radius:50%; }
+    .visual-card:before { width:330px;height:330px;right:-90px;top:-95px; }
+    .visual-card:after { width:230px;height:230px;right:-40px;top:-45px; }
+    .visual-kicker { position:relative; z-index:1; font-size:.75rem; text-transform:uppercase; letter-spacing:.15em; opacity:.8; }
+    .visual-card h2 { position:relative; z-index:1; font-size:2.2rem; line-height:1.12; letter-spacing:-.05em; max-width:280px; margin:55px 0 18px; }
+    .visual-card p { position:relative; z-index:1; color:#e0efea; font-size:.95rem; max-width:290px; }
+    .orb { position:absolute; width:95px;height:95px;border-radius:50%; background:var(--accent); right:32px;bottom:35px; box-shadow:0 0 0 15px rgba(255,255,255,.09); }
+    .float-note { position:absolute; bottom:8px; left:-22px; background:white; padding:16px 20px; border-radius:16px; box-shadow:var(--shadow); font-weight:750; font-size:.9rem; }
+    section { padding:92px 0; }
+    .section-head { max-width:690px; margin-bottom:42px; }
+    .section-head h2 { font-size:clamp(2.1rem,4vw,3.2rem); line-height:1.1; letter-spacing:-.055em; margin:13px 0; }
+    .section-head p { color:var(--muted); margin:0; font-size:1.04rem; }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:65px; align-items:start; }
+    .about-copy p { color:#53686d; margin-top:0; }
+    .quote { padding:28px; background:var(--cream); border-left:4px solid var(--accent); border-radius:0 18px 18px 0; font-size:1.16rem; font-weight:650; line-height:1.5; }
+    .focus-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:30px; }
+    .focus { border:1px solid var(--line); border-radius:20px; padding:24px; background:white; }
+    .focus .num { color:var(--teal); font-weight:850; font-size:.78rem; letter-spacing:.12em; }
+    .focus h3 { margin:13px 0 8px; font-size:1.13rem; }
+    .focus p { color:var(--muted); margin:0; font-size:.92rem; }
+    .projects { background:var(--cream); }
+    .project-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .project { background:white; border:1px solid var(--line); border-radius:18px; padding:23px; min-height:160px; transition:.2s; }
+    .project:hover { transform:translateY(-4px); box-shadow:var(--shadow); }
+    .project span { color:var(--teal); font-size:.74rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+    .project h3 { margin:13px 0 0; font-size:1.08rem; line-height:1.35; }
+    .team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; }
+    .person { border:1px solid var(--line); border-radius:17px; padding:22px; }
+    .avatar { width:42px;height:42px;border-radius:14px;background:var(--mint);color:var(--teal);display:grid;place-items:center;font-weight:850;margin-bottom:15px; }
+    .person h3 { margin:0 0 4px; font-size:1rem; }
+    .person p { color:var(--muted); font-size:.87rem; margin:0 0 8px; }
+    .person a { color:var(--teal); font-size:.84rem; font-weight:700; overflow-wrap:anywhere; }
+    .pubs { background:#f8faf8; }
+    .pub-list { border-top:1px solid var(--line); }
+    .pub-year { display:grid; grid-template-columns:100px 1fr; gap:25px; padding:27px 0; border-bottom:1px solid var(--line); }
+    .pub-year strong { font-size:1.35rem; color:var(--teal); }
+    .pub-year ul { margin:0; padding-left:18px; color:#53686d; }
+    .pub-year li { margin:0 0 11px; }
+    .pub-year li:last-child { margin-bottom:0; }
+    .more-link { display:inline-flex; margin-top:28px; color:var(--teal); font-weight:800; }
+    .contact { background:var(--ink); color:white; }
+    .contact-grid { display:grid; grid-template-columns:1.2fr .8fr; gap:50px; align-items:center; }
+    .contact h2 { font-size:clamp(2.2rem,4vw,3.5rem); line-height:1.08; letter-spacing:-.055em; margin:14px 0; }
+    .contact p { color:#c2d1ce; max-width:570px; }
+    .contact .eyebrow { color:#9bd0c4; }
+    .contact-card { background:#1d3b43; border:1px solid #35545a; border-radius:20px; padding:26px; }
+    .contact-card p { margin:0 0 15px; font-size:.9rem; }
+    .contact-card a { color:#a8ddd0; font-weight:750; overflow-wrap:anywhere; }
+    footer { background:#0c2229; color:#a9bfba; padding:23px 0; font-size:.82rem; }
+    footer .wrap { display:flex; justify-content:space-between; gap:15px; flex-wrap:wrap; }
+    @media (max-width:850px) {
+      .navlinks { display:none; position:absolute; top:76px; left:0; right:0; padding:20px 24px 25px; background:white; border-bottom:1px solid var(--line); flex-direction:column; align-items:flex-start; gap:17px; }
+      .navlinks.open { display:flex; }
+      .menu-btn { display:block; }
+      .hero-grid { grid-template-columns:1fr; gap:25px; padding:65px 0; }
+      .visual { min-height:350px; }
+      .about-grid,.contact-grid { grid-template-columns:1fr; gap:30px; }
+      .focus-grid,.project-grid,.team-grid { grid-template-columns:repeat(2,1fr); }
+    }
+    @media (max-width:560px) {
+      .wrap { width:min(100% - 32px,1160px); }
+      .topbar .wrap { font-size:.72rem; }
+      section { padding:68px 0; }
+      .focus-grid,.project-grid,.team-grid { grid-template-columns:1fr; }
+      .visual-card { min-height:315px; padding:27px; }
+      .visual-card h2 { margin-top:42px; font-size:1.9rem; }
+      .float-note { left:0; bottom:-3px; }
+      .pub-year { grid-template-columns:1fr; gap:8px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="wrap"><span>Department of Computer Science · University of Toronto</span><span>Research · Design · Community</span></div>
+  </div>
+  <header>
+    <nav class="wrap" aria-label="Main navigation">
+      <a class="brand" href="#home"><span class="brand-mark">TS</span><span>Third Space<small>University of Toronto</small></span></a>
+      <button class="menu-btn" aria-label="Toggle navigation" aria-expanded="false" onclick="toggleMenu()">☰</button>
+      <div class="navlinks" id="navlinks">
+        <a href="#about">About</a><a href="#projects">Projects</a><a href="#team">Our Team</a><a href="#publications">Publications</a><a class="nav-cta" href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Welcome to Third Space</div>
+          <h1>Technology shaped by <span>people</span> and place.</h1>
+          <p>We use human values, situated knowledge, and lived experiences to develop impactful solutions through research in Human-Computer Interaction and technology for development.</p>
+          <div class="actions"><a class="btn primary" href="#about">Discover our research <span aria-hidden="true">↗</span></a><a class="btn secondary" href="#projects">Explore projects</a></div>
+        </div>
+        <div class="visual" aria-label="Third Space research statement">
+          <div class="visual-card">
+            <div class="visual-kicker">Research with purpose</div>
+            <h2>Making technology matter in everyday life.</h2>
+            <p>Critical perspectives. Human experiences. Meaningful systems.</p>
+            <div class="orb"></div>
+          </div>
+          <div class="float-note">Human-centred · Critical · Inclusive</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">Who we are</div><h2>What is Third Space?</h2><p>A research group at the University of Toronto exploring how technology, society, and everyday life shape one another.</p></div>
+        <div class="about-grid">
+          <div class="about-copy">
+            <p>Third Space conducts research in Human-Computer Interaction (HCI) and Information and Communication Technologies for Development (ICTD). We study technology in context, with particular attention to the experiences and knowledge of marginalized communities.</p>
+            <p>Our work draws on Critical Theory, Design Fiction, and Political Science, alongside computational approaches such as Mobile Computing, Social Computing, Natural Language Processing, and Augmented Reality.</p>
+            <p>We welcome students and collaborators from Computer Science, Electrical Engineering, Information Science, Design, Anthropology, Sociology, and Gender Studies.</p>
+          </div>
+          <div class="quote">“Utilizing human values, situated knowledge and experiences for developing impactful solutions.”</div>
+        </div>
+        <div class="focus-grid">
+          <article class="focus"><div class="num">01 / PEOPLE</div><h3>Human-Computer Interaction</h3><p>Understanding how people experience, use, adapt, and shape interactive technologies.</p></article>
+          <article class="focus"><div class="num">02 / SOCIETY</div><h3>Technology & Development</h3><p>Exploring the social impact of information and communication technologies.</p></article>
+          <article class="focus"><div class="num">03 / METHODS</div><h3>Critical & Computational Research</h3><p>Combining critical perspectives with computational tools to study complex issues.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">What we work on</div><h2>Research projects</h2><p>Selected projects examining technology, access, participation, repair, privacy, and everyday practices.</p></div>
+        <div class="project-grid">
+          <a class="project" href="all_projects.php"><span>Project</span><h3>Protibadi: Voice Against Gender Inequality and Violence</h3></a>
+          <a class="project" href="all_projects.php"><span>Project</span><h3>Repair: Art, Craft, and Knowledge in Fixing Broken Electronics</h3></a>
+          <a class="project" href="all_projects.php"><span>Project</span><h3>Protiraksha: Surveillance, and Privacy Right in the Global South</h3></a>
+          <a class="project" href="all_projects.php"><span>Project</span><h3>Suhrid: Making Technology Accessible for Low Literate People</h3></a>
+          <a class="project" href="all_projects.php"><span>Project</span><h3>Residual Mobility</h3></a>
+          <a class="project" href="all_projects.php"><span>Project</span><h3>Sharing is Caring? The Impact of Sharing Economy Taxi Rides in India</h3></a>
+          <a class="project" href="all_projects.php"><span>Project</span><h3>OpenStreetMap Bangladesh</h3></a>
+          <a class="project" href="all_projects.php"><span>Project</span><h3>Autism and Voice</h3></a>
+          <a class="project" href="all_projects.php"><span>Project</span><h3>Achor: Voice through Art, Participation</h3></a>
+          <a class="project" href="all_projects.php"><span>Project</span><h3>The Breaking Hand</h3></a>
+        </div>
+        <a class="more-link" href="all_projects.php">View all projects&nbsp; ↗</a>
+      </div>
+    </section>
+
+    <section id="team">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">People behind the research</div><h2>Our team</h2><p>Researchers and students working across computing, design, and the social sciences.</p></div>
+        <div class="team-grid">
+          <article class="person"><div class="avatar">SA</div><h3>Syed Ishtiaque Ahmed</h3><p>Director, Third Space</p><a href="mailto:ishtiaque@cs.toronto.edu">ishtiaque@cs.toronto.edu</a></article>
+          <article class="person"><div class="avatar">MR</div><h3>Mohammad Rashidujjaman Rifat</h3><p>PhD Student, Computer Science · HCI, ICTD, Sustainability</p><a href="mailto:rifat@cs.toronto.edu">rifat@cs.toronto.edu</a></article>
+          <article class="person"><div class="avatar">DS</div><h3>Dina Sabie</h3><p>PhD Student, Computer Science</p><a href="mailto:dsabie@cs.toronto.edu">dsabie@cs.toronto.edu</a></article>
+          <article class="person"><div class="avatar">YR</div><h3>Yasaman Rohanifar</h3><p>MSc Student · HCI, Financial Technologies, Empathetic Technologies</p><a href="mailto:yasamanro@cs.toronto.edu">yasamanro@cs.toronto.edu</a></article>
+          <article class="person"><div class="avatar">AT</div><h3>Abdul Kawsar Tushar</h3><p>MSc Student, Computer Science</p><a href="mailto:tushar21@cs.toronto.edu">tushar21@cs.toronto.edu</a></article>
+          <article class="person"><div class="avatar">HI</div><h3>Hazem Ibrahim</h3><p>MSc Student · HCI, ICTD, Education</p><a href="mailto:hazemibr@cs.toronto.edu">hazemibr@cs.toronto.edu</a></article>
+          <article class="person"><div class="avatar">CD</div><h3>Cansu E. Dedeoglu</h3><p>PhD Student, Information Science</p><a href="mailto:cansu.dedeoglu@mail.utoronto.ca">cansu.dedeoglu@mail.utoronto.ca</a></article>
+          <article class="person"><div class="avatar">MM</div><h3>Maryam Mokhberi</h3><p>PhD Student · AI for Social Good, Human Data Interaction</p><a href="mailto:maryam@cs.toronto.edu">maryam@cs.toronto.edu</a></article>
+          <article class="person"><div class="avatar">PC</div><h3>Priyank Chandra</h3><p>Postdoctoral Fellow, Computer Science</p><a href="mailto:prch@cs.toronto.edu">prch@cs.toronto.edu</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pubs" id="publications">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">Research output</div><h2>Latest publications</h2><p>Selected publications and scholarly work from the Third Space research community.</p></div>
+        <div class="pub-list">
+          <div class="pub-year"><strong>2020</strong><ul><li>Understanding the Challenges for Bangladeshi Women to Participate in #MeToo Movement — GROUP 2020.</li><li>Towards Automated Sexual Violence Report Tracking — ICWSM 2020.</li></ul></div>
+          <div class="pub-year"><strong>2019</strong><ul><li>“My cousin bought the phone for me. I never go to mobile shops”: The Role of Family in Women’s Technological Inclusion in Islamic Culture — CSCW 2019.</li><li>Shada Baksho: A Hardware Device to Explore the Fears of Using Mobile Phones among the Rural Women of Bangladesh — ICTD 2019.</li><li>Moving into a Technology Land: Exploring the Challenges of the Refugees in Canada in Accessing its Computerized Infrastructures — COMPASS 2019.</li><li>The Breaking Hand: Knowledge, Care, and Sufferings of the Hand of an Electronic Waste Worker — CHI 2019.</li></ul></div>
+          <div class="pub-year"><strong>2018</strong><ul><li>Designing for Voice: The Challenges of Access, Autonomy, and Accountability — Ph.D. Thesis, Cornell University.</li><li>Digital Privacy Challenges with Shared Mobile Phone Use in Bangladesh — CSCW 2017/18.</li></ul></div>
+        </div>
+        <a class="more-link" href="all_pubs.php">Browse all publications&nbsp; ↗</a>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap contact-grid">
+        <div><div class="eyebrow">Get in touch</div><h2>Curious about our work?</h2><p>We welcome conversations with prospective students, researchers, and collaborators interested in human-centred and socially engaged technology research.</p><a class="btn" style="background:#e5a34b;color:#142d35" href="mailto:thirdspace@dgp.toronto.edu">Email Third Space ↗</a></div>
+        <div class="contact-card"><p><strong>Third Space Research Group</strong></p><p>Bahen Centre for Information Technology<br>40 St. George Street<br>Toronto, ON M5S 2E4, Canada</p><p><a href="mailto:thirdspace@dgp.toronto.edu">thirdspace@dgp.toronto.edu</a></p><p><a href="https://www.utoronto.ca/" target="_blank" rel="noopener">University of Toronto ↗</a></p></div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap"><span>© <span id="year"></span> Third Space · University of Toronto</span><span>Human values. Situated knowledge. Impactful solutions.</span></div></footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    function toggleMenu() {
+      const menu = document.getElementById('navlinks');
+      const button = document.querySelector('.menu-btn');
+      const isOpen = menu.classList.toggle('open');
+      button.setAttribute('aria-expanded', String(isOpen));
+    }
+    document.querySelectorAll('#navlinks a').forEach(link => link.addEventListener('click', () => {
+      document.getElementById('navlinks').classList.remove('open');
+      document.querySelector('.menu-btn').setAttribute('aria-expanded', 'false');
+    }));
+  </script>
+</body>
+</html>
